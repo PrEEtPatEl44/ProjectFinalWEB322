@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css" />
+
+</head>
+<body>
+  <%- include('partials/navbar', {page: '/lego/sets/:num'}) %>
+
+    <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content flex-col lg:flex-row">
+          <img src="<%= set.img_url %>" class="max-w-sm rounded-lg shadow-2xl" />
+          <div>
+            <h1 class="text-5xl font-bold"><%= set.name %></h1>
+            <p class="py-6">Here you will find all the details about the set <%= set.name %></p>
+            <p class="py-6"><strong>Year:</strong> <%= set.year %></p>
+            <% if (set.theme) { %>
+                <p class="py-6"><strong>Theme:</strong> <%= set.theme.name %></p>
+            <% } else { %>
+                <p class="py-6"><strong>Theme:</strong> Not specified</p>
+            <% } %>
+            <p class="py-6"><strong>Number Of Parts:</strong> <%= set.num_parts %></p>
+            <div id="quote"></div><br><br>
+            <a href="/lego/editSet/<%= set.set_num %>" class="btn btn-success">Edit</a>
+
+            <a href="#" onclick="history.back(); return false;" class="btn btn-neutral">Back</a>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", ()=>{
+                fetch( "https://quotable.io/random ")
+                .then(res=>{
+                    if(!res.ok){
+                        throw new Error("Network error")
+                    }
+                    return res.json();
+                })
+                .then(data=>{
+                    const quote = document.getElementById('quote');
+                    quote.innerHTML=`
+                    <p class="py-6">"${data.content}"</p>
+                    <strong class="py-6">${data.author}</strong>
+                    `;
+                })
+                .catch(err=>{
+                    console.log('error while fetching ')
+                })
+            });
+        </script>
+
+          </div>
+        </div>
+      </div>
+</body>
+</html> 

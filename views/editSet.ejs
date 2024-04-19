@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css">
+    
+</head>
+<body>
+    <%- include('partials/navbar', {page: '' }) %>
+    <div class="hero min-h-24 p-6 bg-base-200 md:container md:mx-auto">
+        <div class="max-w-md">
+          <h1 class="text-5xl py-6 font-bold"><a href="/lego/sets" class="btn-ghost">Edit Set:<%= set.name %></a></h1>
+          <p class="py-6">Use the information below to update the set <%= set.name %></p>
+        </div>
+    </div>
+    <form action="/lego/editSet" method="POST" class="flex items-center  flex-col p-2 h-screen">
+        <label class="input input-bordered flex items-center gap-2  mb-6">
+            Name:
+            <input type="text" name="name" class="grow " value=" <%= set.name %>"/>
+          </label>
+          <label class="input input-bordered flex items-center gap-2 mb-6 ">
+            Year:
+            <input  name="year" class="grow " value=" <%= set.year %>"/>
+          </label>
+          <label class="input input-bordered flex items-center gap-2  mb-6">
+            Num. Of Parts:
+            <input  name="num_parts" class="grow " value=" <%= set.num_parts %>"/>
+          </label>
+          <label class="input input-bordered flex items-center gap-2  mb-6">
+            Image URL:
+            <input type="url" name="img_url" class="grow " value="<%= set.img_url %>" />
+          </label>
+          <select class="select select-bordered w-full max-w-xs mb-6" name="theme">
+            <% themes.forEach(theme=>{ %>
+                <option <%= (set.theme._id === theme._id) ? "selected" : "" %> value="<%= theme._id %>">
+                    <%= theme.name %>
+                  </option>
+            <% }); %> 
+          </select>
+          <label class="input input-bordered flex items-center gap-2 p-6  mb-6">
+            Set Num.:
+            <input type="text" name="set_num" class="grow cursor-not-allowed" disabled value="<%= set.set_num %>"/>
+          </label>
+          <div class="flex gap-2">
+
+            <a href="/lego/deleteSet/<%= set.set_num %>" class="btn btn-error">Delete</a><br>
+            <input type="submit" value="Submit" class="btn ">
+          </div>
+      </form>
+</body>
+</html>

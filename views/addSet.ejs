@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css">
+    
+</head>
+<body>
+    <%- include('partials/navbar', {page: '/lego/addSet' }) %>
+    <div class="hero min-h-24 p-6 bg-base-200 md:container md:mx-auto">
+        <div class="max-w-md">
+          <h1 class="text-5xl py-6 font-bold"><a href="/lego/sets" class="btn-ghost">Add Sets</a></h1>
+        </div>
+    </div>
+    <form action="/lego/addSet" method="POST" class="flex items-center  flex-col p-2 h-screen">
+        <label class="input input-bordered flex items-center gap-2  mb-6">
+            Name:
+            <input type="text" name="name" class="grow " />
+          </label>
+          <label class="input input-bordered flex items-center gap-2 mb-6 ">
+            Year:
+            <input type="number" name="year" class="grow " />
+          </label>
+          <label class="input input-bordered flex items-center gap-2  mb-6">
+            Num. Of Parts:
+            <input type="number" name="num_parts" class="grow " />
+          </label>
+          <label class="input input-bordered flex items-center gap-2  mb-6">
+            Image URL:
+            <input type="url" name="img_url" class="grow " />
+          </label>
+          <select class="select select-bordered w-full max-w-xs mb-6" name="theme">
+            <% themes.forEach(theme=>{ %>
+                <option value="<%= theme._id %>">
+                  <%= theme.name %>
+                </option>    
+            <% }); %> 
+          </select>
+          <label class="input input-bordered flex items-center gap-2 p-6  mb-6">
+            Set Num.:
+            <input type="text" name="set_num" class="grow " />
+          </label>
+          <input type="submit" value="Submit" class="btn ">
+      </form>
+</body>
+</html>

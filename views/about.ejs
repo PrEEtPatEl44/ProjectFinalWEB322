@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <%- include('partials/navbar', {page: '/about'}) %>
+      <div class="hero min-h-screen bg-base-200 md:container md:mx-auto">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold">About</h1>
+            <p class="py-6">All the fascinating details about me </p>
+          </div>
+        </div>
+      </div>
+      <div class="grid bg-stone-900 grid-cols-1 lg:grid-cols-2 gap-4 bg-base-100">
+        <div class="flex" style="justify-content: center; align-items: center;">
+          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/81a4e680815973.5cec6bcf6aa1a.jpg" class="w-96 p-8">
+        </div>
+        <div class=" flex text-center p-6 text-[#50d71e]" style="justify-content: center; align-items: center;">
+          Hii I am Preet Patel currently studying at Seneca Polyethnic 
+          When I'm not busy doing the assignments of WEB322, OOP345, DBS311, SYD366
+          you can find me in the streets of Los Santos in GTA-v I don't play 
+          CyberPunk its just the theme available in daisy UI
+        </div>
+
+      </div>
+</body>
+</html>

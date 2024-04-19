@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <%- include('partials/navbar', {page: '/lego/sets'}) %>
+
+    <div class="hero min-h-24 p-6 bg-base-200 md:container md:mx-auto">
+        
+          <div class="max-w-md">
+            <h1 class="text-5xl py-6 font-bold"><a href="/lego/sets" class="btn-ghost">Collection</a></h1>
+            <div class="flex justify-between">
+                <a class="btn  btn-success " href="/lego/sets?theme=Books">Books</a>
+                <a class="btn  btn-info" href="/lego/sets?theme=Technic">Technic</a>
+                <a class="btn  btn-warning" href="/lego/sets?theme=Supplemental">Supplemental</a>
+            </div>
+          </div>
+        
+    </div>
+    <table class="flex justify-center">
+        <tbody>
+                <% sets.forEach((set)=>{ %>
+                    <tr>
+                        <td class="w-24 rounded"><img class="w-24 p-2" src="<%= set.img_url %>"></td>
+                        <td ><%= set.name %> </td>
+                        <td ><a href="/lego/sets?theme=<%= set.theme.name %>" class="btn btn-error"><%= set.theme.name %></td>
+                        <td ><%= set.year %></td>
+                        <td class="pl-6 pr-6"><%= set.num_parts %></td>
+                        <td><a href="/lego/sets/<%= set.set_num %>" class="btn btn-accent">Details</a></td>
+                    </tr>
+                <% }) %>
+        </tbody>
+    </table>
+  
+</body>
+</html>
