@@ -26,12 +26,9 @@ function initialize() {
     mongoose
       .connect(process.env.DB_CONNECTION_STRING)
       .then(() => {
-        Set.find()
-          .populate("theme")
-          .then((data) => {
             // console.log(data);
             resolve("Connection Successfull");
-          });
+
       })
       .catch((err) => {
         console.error("Error connecting to MongoDB:", err);
