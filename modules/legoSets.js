@@ -56,7 +56,10 @@ function getSetByNum(setNum) {
       .populate("theme")
       .then((data) => {
         resolve(data);
-      });
+      })
+      .catch((err) => {
+        reject(err.errors[0].message);
+      });;
   });
 }
 
@@ -68,14 +71,21 @@ function getSetsByTheme(theme) {
         let finalData = data.filter((set) => set.theme.name === theme);
         console.log(finalData);
         resolve(finalData);
+      })
+      .catch((err) => {
+        reject(err.errors[0].message);
       });
   });
 }
 
 function getAllThemes() {
   return new Promise((resolve, reject) => {
-    Theme.find().then((data) => {
+    Theme.find()
+    .then((data) => {
       resolve(data);
+    })
+    .catch((err) => {
+      reject(err.errors[0].message);
     });
   });
 }
