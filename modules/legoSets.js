@@ -69,7 +69,7 @@ function getSetsByTheme(theme) {
       .populate("theme")
       .then((data) => {
         let finalData = data.filter((set) => set.theme.name === theme);
-        console.log(finalData);
+        // console.log(finalData);
         resolve(finalData);
       })
       .catch((err) => {
@@ -114,9 +114,11 @@ function addSet(setData) {
 
 function editSet(set_num, setData) {
   return new Promise((resolve, reject) => {
-    Set.updateOne(
+    // console.log(setData);
+    // console.log(set_num);
+     Set.updateOne(
       {
-        set_num: setData.set_num,
+        set_num: set_num,
       },
       {
         $set: {
@@ -127,10 +129,11 @@ function editSet(set_num, setData) {
           theme: setData.theme,
         },
       }
-    )
+     )
       .then((data) => {
+        // updatedSet.save();
         // console.log(data);
-        resolve();
+        resolve(data);
       })
       .catch((err) => {
         reject(err);
