@@ -24,10 +24,7 @@ const Set = mongoose.model("Set", setSchema, "Sets");
 function initialize() {
   return new Promise((resolve, reject) => {
     mongoose
-      .connect(process.env.DB_CONNECTION_STRING, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
+      .connect(process.env.DB_CONNECTION_STRING)
       .then(() => {
         Set.find()
           .populate("theme")
